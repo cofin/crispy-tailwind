@@ -7,24 +7,29 @@
 
     <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="{% if wrapper_class %}{{ wrapper_class }} {% endif %}{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}">
     {% if field.label and form_show_labels %}
-        <label for="{{ field.id_for_label }}" class="{% if label_class %}{{ label_class }}{% else %}block text-gray-700 text-sm font-bold mb-2{% endif %}">
+        <label for="{{ field.id_for_label }}" class="{% if label_class %}{{ label_class }}{% else %}block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2{% endif %}">
             {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
         </label>
     {% endif %}
 
     {# if field has a special template then use this #}
     {% if field|is_select %}
-        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-7{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
 
         {% include 'tailwind/layout/select.html' %}
+
     {% elif field|is_radioselect %}
-        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-7{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
 
         {% include 'tailwind/layout/radioselect.html' %}
     {% elif field|is_checkboxselectmultiple %}
 
-        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-7{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
         {% include 'tailwind/layout/checkboxselectmultiple.html' %}
+    {% comment %} {% elif field|is_file %}
+
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-7{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        {% include 'tailwind/layout/field_file.html' %} {% endcomment %}
     {% else %}
 
         {# otherwise use django rendering with additional classes added #}
@@ -34,6 +39,6 @@
     {% include 'tailwind/layout/help_text_and_errors.html' %}
 
     </{% if tag %}{{ tag }}{% else %}div{% endif %}>
-    
+
 
 {% endif %}
