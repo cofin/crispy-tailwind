@@ -5,8 +5,14 @@ Crispy-Tailwind
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 
-
 A Tailwind_ template pack for the wonderful django-crispy-forms_.
+
+**WARNING**
+
+This project is still in it's early stages of development and has not yet
+been published to PyPI. If you would like to try out the package please
+install from github directly. Any contributions to the package would be
+very welcomed.
 
 Currently the template pack allows the use of the ``|crispy`` filter to style
 your form. Here is an example image.
@@ -39,11 +45,20 @@ for your project::
 How to use
 ----------
 
-This project is still in its early stages. Currently functionality allows
-the ``|crispy`` filter to be used to style your form. In your template:
+This project is still in its early stages.
+
+Currently functionality allows the ``|crispy`` filter to be used to style your
+form. In your template:
 
 1. Load the filter ``{% load tailwind_filters %}``
 2. Apply the crispy filter ``{{ form|crispy }}``
+
+We can also use the ``{% crispy %}`` tag to allow usage of crispy-forms'
+``FormHelpler`` and ``Layout``. In your template:
+
+1. Load the crispy tag ``{% load crispy_forms_tags %}``
+2. Add ``FormHelper`` to your form and use crispy-forms to set-up your form
+2. Use the crispy tag ``{% crispy form %}`` in your template.
 
 Documentation
 -------------

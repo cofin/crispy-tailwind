@@ -27,6 +27,39 @@ class SampleForm(forms.Form):
         return self.cleaned_data
 
 
-class SampleForm2(forms.Form):
+class CharFieldForm(forms.Form):
 
     name = forms.CharField(required=True)
+
+
+class ShortCharFieldForm(forms.Form):
+    name = forms.CharField(required=True, max_length=3)
+
+
+class PasswordFieldForm(forms.Form):
+
+    password = forms.CharField(widget=forms.PasswordInput)
+
+
+class RadioForm(forms.Form):
+    choices = [
+        ("blue", "Blue"),
+        ("green", "Green"),
+    ]
+    radio = forms.ChoiceField(widget=forms.RadioSelect, choices=choices)
+
+
+class CheckboxMultiple(forms.Form):
+    choices = [
+        ("blue", "Blue"),
+        ("green", "Green"),
+    ]
+    checkbox = forms.ChoiceField(widget=forms.CheckboxSelectMultiple, choices=choices)
+
+
+class SelectForm(forms.Form):
+    tos_accepted = forms.ChoiceField(
+        label="terms of service",
+        widget=forms.Select(),
+        choices=(("accepted", "Accepted"), ("not_accepted", "Not accepted")),
+    )
